@@ -36,7 +36,8 @@ abstract class Adapter extends events.EventEmitter {
     ): Promise<Adapter> {
         const {ZStackAdapter} = await import('./z-stack/adapter');
         const {DeconzAdapter} = await import('./deconz/adapter');
-        type AdapterImplementation = typeof ZStackAdapter | typeof DeconzAdapter;
+        const {EzspAdapter} = await import('./ezsp/adapter');
+        type AdapterImplementation = typeof ZStackAdapter | typeof DeconzAdapter | typeof EzspAdapter;
 
         let adapters: AdapterImplementation[];
         const adapterLookup = {zstack: ZStackAdapter, deconz: DeconzAdapter};
